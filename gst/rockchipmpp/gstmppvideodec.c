@@ -47,7 +47,7 @@ static GstStaticPadTemplate gst_mpp_video_dec_sink_template =
         "parsed = (boolean) true"
         ";"
         "video/x-h265,"
-        "stream-format = (string) { byte-stream },"
+        "stream-format = (string) { hvc1, hev1, byte-stream },"
         "alignment = (string) { au },"
         "parsed = (boolean) true"
         ";"
