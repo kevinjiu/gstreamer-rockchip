@@ -27,6 +27,7 @@
 
 #include "gstmppbarebufferpool.h"
 #include "gstmppjpegdec.h"
+#include <gst/gst-compat-private.h>
 
 GST_DEBUG_CATEGORY (mpp_jpeg_dec_debug);
 #define GST_CAT_DEFAULT mpp_jpeg_dec_debug
