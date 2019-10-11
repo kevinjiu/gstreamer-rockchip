@@ -63,6 +63,8 @@ _mppmem_new (GstMemoryFlags flags, GstAllocator * allocator,
 {
   GstMppMemory *mem;
 
+  flags |= GST_FD_MEMORY_FLAG_DONT_CLOSE;
+
   mem = g_slice_new0 (GstMppMemory);
   gst_memory_init (GST_MEMORY_CAST (mem),
       flags, allocator, parent, maxsize, align, offset, size);
@@ -226,8 +228,8 @@ gst_mpp_allocator_alloc_dmabuf (GstMppAllocator * allocator,
     return NULL;
   }
 
-  dma_mem = gst_fd_allocator_alloc (dmabuf_allocator, mem->dmafd,
-      mem->size, GST_FD_MEMORY_FLAG_DONT_CLOSE);
+  dma_mem = gst_dmabuf_allocator_alloc (dmabuf_allocator, mem->dmafd,
+      mem->size);
   gst_mini_object_set_qdata (GST_MINI_OBJECT (dma_mem),
       GST_MPP_MEMORY_QUARK, mem, (GDestroyNotify) gst_memory_unref);
 
