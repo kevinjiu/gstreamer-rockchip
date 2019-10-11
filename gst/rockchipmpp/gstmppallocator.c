@@ -63,8 +63,6 @@ _mppmem_new (GstMemoryFlags flags, GstAllocator * allocator,
 {
   GstMppMemory *mem;
 
-  flags |= GST_FD_MEMORY_FLAG_DONT_CLOSE;
-
   mem = g_slice_new0 (GstMppMemory);
   gst_memory_init (GST_MEMORY_CAST (mem),
       flags, allocator, parent, maxsize, align, offset, size);
