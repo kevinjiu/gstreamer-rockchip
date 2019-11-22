@@ -523,6 +523,8 @@ gst_mpp_video_dec_handle_frame (GstVideoDecoder * decoder,
     GstBuffer *codec_data;
     MppFrame mframe = NULL;
     gint block_flag;
+    /* at least 200 */
+    gint64 block_timeout = 200;
 
     codec_data = self->input_state->codec_data;
     if (codec_data) {
@@ -568,6 +570,8 @@ gst_mpp_video_dec_handle_frame (GstVideoDecoder * decoder,
     block_flag = 200;
     self->mpi->control (self->mpp_ctx, MPP_SET_OUTPUT_BLOCK_TIMEOUT,
       (gpointer) &block_flag);
+    self->mpi->control (self->mpp_ctx, MPP_SET_OUTPUT_BLOCK_TIMEOUT,
+      (gpointer) & block_timeout);
 
     GST_VIDEO_DECODER_STREAM_UNLOCK (decoder);
     /* Aquire format frame frome mpp decode */

@@ -44,6 +44,7 @@ struct _GstMppDecBufferPool
 
   guint size;
   GstBuffer *buffers[VIDEO_MAX_FRAME];
+  guint timeout_cnt;
 
   GstMppAllocator *vallocator;
   GstAllocator *allocator;
