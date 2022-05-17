@@ -93,7 +93,7 @@ if rga_dep.found()
    # KevinJ added for libra debug
   message('librga found! Set HAVE_RGA to 1')
 else
-  message('No librga found.')
+  error('No librga found.')
 endif
 
 if not get_option('vpxalphadec').auto()
