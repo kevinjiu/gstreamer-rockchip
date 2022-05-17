@@ -90,6 +90,7 @@ rga_dep = dependency('librga', required : get_option('rga'))
 
 if rga_dep.found()
   cdata.set10('HAVE_RGA', 1)
+  message('librga found! Set HAVE_RGA to 1') # KevinJ added
 endif
 
 if not get_option('vpxalphadec').auto()
