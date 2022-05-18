@@ -86,7 +86,7 @@ glib_dep = dependency('glib-2.0', version : glib_req,
 x11_dep = dependency('x11', required : get_option('rkximage'))
 drm_dep = dependency('libdrm', required : get_option('rkximage'))
 mpp_dep = dependency('rockchip_mpp', required : get_option('rockchipmpp'))
-rga_dep = dependency('librga', required : get_option('rga'))
+rga_dep = dependency('rga', required : get_option('rga'))
 
 if rga_dep.found()
   cdata.set10('HAVE_RGA', 1)
