@@ -208,11 +208,13 @@ gst_mpp_rga_do_convert (rga_info_t * src_info, rga_info_t * dst_info)
     return FALSE;
 
   if (!rga_inited) {
+    /* //c_RkRgaInit is always = 0 for Android. KevinJ removed
     if (c_RkRgaInit () < 0) {
       rga_supported = 0;
       GST_WARNING ("failed to init RGA");
       return FALSE;
     }
+    */
     rga_inited = 1;
   }
 
