@@ -88,8 +88,9 @@ struct _GstMppEnc
   MppApi *mpi;
 };
 
+// KevinJ added NV21 into MPP_ENV_IN_FORMATS, Actually it's NV12
 #define MPP_ENC_IN_FORMATS \
-    "NV12, I420, YUY2, UYVY, " \
+    "NV21, NV12, I420, YUY2, UYVY, " \
     "BGR16, RGB16, " \
     "ABGR, ARGB, BGRA, RGBA, xBGR, xRGB, BGRx, RGBx"
 
