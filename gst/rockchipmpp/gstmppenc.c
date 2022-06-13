@@ -746,8 +746,10 @@ gst_mpp_enc_convert (GstVideoEncoder * encoder, GstVideoCodecFrame * frame)
   }
 
   outbuf = gst_buffer_new ();
-  if (!outbuf)
+  if (!outbuf) {
+    GET_WARNING_OBJECT ("gst_mpp_enc_convert() gst_buffer_new error");  // KevinJ added for debug
     goto err;
+  }
 
   gst_buffer_copy_into (outbuf, inbuf,
       GST_BUFFER_COPY_FLAGS | GST_BUFFER_COPY_TIMESTAMPS, 0, 0);
@@ -780,8 +782,10 @@ gst_mpp_enc_convert (GstVideoEncoder * encoder, GstVideoCodecFrame * frame)
 convert:
   out_mem = gst_allocator_alloc (self->allocator,
       GST_VIDEO_INFO_SIZE (dst_info), NULL);
-  if (!out_mem)
+  if (!out_mem) {
+    GET_WARNING_OBJECT ("gst_mpp_enc_convert() gst_allocator_alloc error");  // KevinJ added for debug
     goto err;
+  }
 
   gst_buffer_append_memory (outbuf, out_mem);
 
@@ -792,14 +796,17 @@ convert:
   }
 #endif
 
-  if (self->rotation)
+  if (self->rotation) {
+    GET_WARNING_OBJECT ("gst_mpp_enc_convert() self->rotation not defined");  // KevinJ added for debug
     goto err;
+  }
 
   if (gst_video_frame_map (&src_frame, &src_info, inbuf, GST_MAP_READ)) {
     if (gst_video_frame_map (&dst_frame, dst_info, outbuf, GST_MAP_WRITE)) {
       if (!gst_video_frame_copy (&dst_frame, &src_frame)) {
         gst_video_frame_unmap (&dst_frame);
         gst_video_frame_unmap (&src_frame);
+        GET_WARNING_OBJECT ("gst_mpp_enc_convert() gst_video_frame_copy error");  // KevinJ added for debug
         goto err;
       }
       gst_video_frame_unmap (&dst_frame);
